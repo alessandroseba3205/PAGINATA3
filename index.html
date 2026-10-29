@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Encuesta de hogares: empleo e ingresos, I trimestre 2019</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="styles.css"></head><body>
+<header><div class="w"><h1>Empleo e ingresos en hogares, enero a marzo de 2019</h1><p>Informe de análisis y base de datos de la encuesta, con gráficos y una tabla que puedes filtrar.</p></div></header>
+<nav><div class="w"><a href="#base">Base de datos</a><a href="#graficos">Análisis gráfico</a><a href="#tabla">Explorar datos</a><a href="#conclusiones">Conclusiones</a></div></nav>
+<main class="w">
+<section id="base"><h2>1. Descripción de la base de datos</h2>
+<div class="k"><div><b>16,872</b><span>registros (una persona por fila)</span></div><div><b>102</b><span>variables</span></div><div><b>4,533</b><span>hogares</span></div><div><b>13,008</b><span>personas de 14 años o más</span></div><div><b>47%</b><span>de celdas vacías, en promedio</span></div></div>
+<p>La base <b>Base_de_datos.csv</b> corresponde a enero, febrero y marzo de 2019. Por su estructura y por el sufijo del factor de expansión (<i>fa_efm19</i>), parece una encuesta de empleo del INEI (tipo Encuesta Permanente de Empleo, Lima Metropolitana). Es una inferencia: conviene confirmarla con el diccionario oficial.</p>
+<p>Las variables se agrupan en cuatro bloques: identificación y diseño muestral, características demográficas, situación laboral e ingresos. Las preguntas laborales solo se aplican a personas de 14 años o más; por eso solo 13,008 filas tienen esa información.</p>
+<div class="tw"><table><thead><tr><th>Variable</th><th>Significado (codificación INEI)</th><th>Uso</th></tr></thead><tbody>
+<tr><td>p107</td><td>Sexo (1 = hombre, 2 = mujer)</td><td>Gráficos 1 y 3</td></tr><tr><td>p108</td><td>Edad en años</td><td>Gráficos 1 y 4</td></tr><tr><td>p206</td><td>Categoría ocupacional</td><td>Gráfico 3</td></tr><tr><td>p109a</td><td>Nivel educativo alcanzado (1 a 10)</td><td>Gráfico 4</td></tr><tr><td>ocu200</td><td>Condición de actividad</td><td>Gráficos 2, 3 y 4</td></tr><tr><td>ingtot</td><td>Ingreso total mensual (soles)</td><td>Gráficos 3 y 4</td></tr></tbody></table></div></section>
+
+<section id="graficos"><h2>2. Análisis gráfico</h2>
+<figure><img src="img/grafico1.jpg" alt="Pirámide de población por edad y sexo"><figcaption><b>Gráfico 1.</b> Hay 51.5% de mujeres y 48.5% de hombres. La edad mediana es de 32 años; 22.3% tiene menos de 15 años y 11.7% tiene 65 años o más.</figcaption></figure>
+<figure><img src="img/grafico2.jpg" alt="Condición de actividad"><figcaption><b>Gráfico 2.</b> De las 13,008 personas de 14 años o más, 58.1% está ocupada y 30.7% es inactiva; el desempleo abierto es de 4.8% y el oculto de 0.5%. La inactividad es mayor en mujeres (38.8%) que en hombres (21.8%). El «código 0» no tiene etiqueta clara y se muestra aparte.</figcaption></figure>
+<figure><img src="img/grafico3.jpg" alt="Ingreso por categoría ocupacional y sexo"><figcaption><b>Gráfico 3.</b> Entre los 7,199 ocupados con ingreso positivo, la mediana es S/ 1,299 y el promedio S/ 1,702. «Empleador» tiene la mayor mediana (S/ 2,274) e «Independiente» la menor (S/ 1,000). Los hombres tienen una mediana de S/ 1,500 y las mujeres de S/ 1,039: ellas ganan 31% menos. Se omitieron los valores atípicos.</figcaption></figure>
+<figure><img src="img/grafico4.jpg" alt="Mapa de calor del ingreso mediano por edad y educación"><figcaption><b>Gráfico 4.</b> El ingreso mediano más alto (S/ 3,000) corresponde a ocupados con educación universitaria de 45-54 y 55+ años; el más bajo (S/ 800), a «Hasta primaria» de 55+. Las celdas con menos de 20 ocupados quedan sin valor.</figcaption></figure></section>
+
+<section id="tabla"><h2>Explorar la base de datos</h2>
+<p class="mu">Se muestran las 13 variables principales de las 16,872 personas. Las variables 102 completas están en el CSV original.</p>
+<div class="f"><label>Buscar<input id="q" type="search" placeholder="Cualquier valor"></label>
+<label>Sexo<select id="s"><option value="">Todos</option><option value="1">Hombre</option><option value="2">Mujer</option></select></label>
+<label>Edad desde<input id="e1" type="number" min="0" max="110"></label><label>hasta<input id="e2" type="number" min="0" max="110"></label>
+<label>Ingreso mínimo (S/)<input id="i1" type="number" min="0"></label>
+<label>Filas por página<select id="n"><option>25</option><option>50</option><option>100</option></select></label></div>
+<div class="pg"><span id="c" class="mu" aria-live="polite"></span></div>
+<div class="tw"><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
+<div class="pg"><button id="pv">Anterior</button><span id="pi"></span><button id="nx">Siguiente</button></div>
+<p class="mu">Los valores de p206, p109a y ocu200 se muestran como códigos del cuestionario. Los ingresos vacíos corresponden a personas sin dato.</p></section>
+
+<section id="conclusiones"><h2>3. Conclusiones</h2><ul>
+<li>La base describe a 16,872 personas de 4,533 hogares y permite analizar población, empleo e ingresos con pocas variables.</li>
+<li>Hay una diferencia clara por sexo: las mujeres participan menos en el mercado laboral (39% inactivas frente a 22% de los hombres) y, cuando trabajan, su ingreso mediano es menor.</li>
+<li>El ingreso depende del tipo de empleo, la edad y el nivel educativo (Gráficos 3 y 4); esta asociación no prueba causalidad.</li>
+<li>La distribución del ingreso es asimétrica, por eso conviene reportar la mediana además del promedio.</li></ul>
+<h2>4. Limitaciones</h2><p>Los resultados son <b>descriptivos de la muestra</b>: no se aplicó el factor de expansión (<i>fa_efm19</i>), así que las cifras no representan a la población total. Las etiquetas provienen de la codificación habitual del INEI y deben verificarse con el diccionario de la encuesta. Se excluyeron del análisis de ingresos los casos con ingreso igual a 0.</p></section>
+</main><footer><div class="w">Fuente: Base_de_datos.csv e Informe_Base_de_datos.pdf</div></footer>
+<script src="script.js"></script></body></html>
